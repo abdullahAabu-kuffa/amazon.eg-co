@@ -1,0 +1,483 @@
+/*Global Rules*/
+@use 'variables';
+as *,
+
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: #eee;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@mixin breakpoint($point) {
+    @if($point =='mobile') {
+        @media (max-width:376px) {
+            @content;
+        }
+    }
+
+    @else if($point =='small') {
+        @media(max-width:767px) {
+            @content;
+        }
+    }
+
+    @else if($point =='medium') {
+        @media (min-width:768px) and (max-width:991px) {
+            @content;
+        }
+    }
+
+    @else if($point =='large') {
+        @media (min-width:992px)and (max-width:1199px) {
+            @content;
+        }
+    }
+
+    @else if($point =='xlarge') {
+        @media (min-width:1200px) {
+            @content;
+        }
+    }
+}
+
+@mixin container() {
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+}
+
+/*Header*/
+header {
+    @include container();
+    display: flex;
+    background-color: variables.$second-color;
+    color: white;
+    height: 60px;
+
+    span:first-of-type {
+        display: flex;
+        font-size: 35px;
+        font-weight: bold;
+
+        @include breakpoint(small) {
+            display: none !important;
+        }
+
+        span {
+            margin-top: 13px;
+            align-self: center;
+            font-size: 14px;
+        }
+    }
+
+    >span {
+        margin: auto 5px;
+
+        @include breakpoint(mobile) {
+            font-size: 12px;
+        }
+    }
+
+    @include breakpoint(mobile) {
+        a {
+            display: none;
+        }
+    }
+
+    .search {
+        margin: 7px 30px;
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+
+        @include breakpoint(mobile) {
+            width: 350px;
+
+            select {
+                width: 90px;
+            }
+        }
+
+        @include breakpoint(small) {
+            width: 600px;
+        }
+
+        @include breakpoint(medium) {
+            width: 900px;
+        }
+
+        @include breakpoint(large) {
+            width: 1200px;
+        }
+
+        @include breakpoint(xlarge) {
+            width: 1400px;
+        }
+
+        select,
+        input,
+        button {
+            outline: none;
+            border: none;
+            height: 100%;
+            padding: 0 5px;
+        }
+
+        input:hover,
+        button:hover,
+        select:hover {
+            border: variables.$main-border;
+            border-color: variables.$hover-color;
+        }
+
+        select {
+            width: 10%;
+            border-right: variables.$main-border;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+
+        input {
+            width: 85%;
+            cursor: pointer;
+        }
+
+        button {
+            width: 5%;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            border-left: variables.$main-border;
+            background-color: variables.$hover-color;
+
+            @include breakpoint(small) {
+                width: 15%;
+            }
+        }
+
+
+    }
+
+    .end-div {
+        display: flex;
+
+        @include breakpoint(mobile) {
+            font-size: 10px;
+            display: none;
+
+            .login {
+                display: block !important;
+            }
+        }
+
+        @include breakpoint(small) {
+            font-size: 12px;
+            display: none;
+        }
+
+
+        @include breakpoint(medium) {
+            font-size: 14px;
+        }
+
+        @include breakpoint(large) {
+            font-size: 16px;
+        }
+
+        button,
+        select {
+            margin: 0 5px;
+            padding: 2px;
+            color: white;
+            border: none;
+            background-color: variables.$second-color;
+        }
+
+        select:hover,
+        button:hover {
+            border: 2px solid white;
+        }
+    }
+}
+
+/*Navbar*/
+nav {
+    @include container();
+    padding-right: 0 !important;
+    background-color: rgb(0, 13, 45);
+    height: 45px;
+    color: white !important;
+
+    button {
+        color: white !important;
+
+        span {
+            color: white !important;
+        }
+    }
+
+    ul {
+        li {
+            background-color: rgb(0, 13, 45);
+            color: white;
+            border: none;
+            font-weight: normal;
+
+            @include breakpoint(large) {
+                margin: 0 5px;
+            }
+
+            @include breakpoint(xlarge) {
+                margin: 0 10px;
+            }
+        }
+
+        .rem {
+            @include breakpoint(large) {
+                display: none
+            }
+        }
+    }
+
+    .img {
+        img {
+            @include breakpoint(mobile) {
+                display: none !important;
+            }
+        }
+    }
+}
+
+/*Slides*/
+.slide {
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(to bottom, transparent, #eee);
+        pointer-events: none;
+    }
+
+    .carousel-inner {
+        box-shadow: 0 -50px 50px #eee inset !important;
+    }
+
+    button {
+        height: 400px;
+
+        span:first-of-type {
+            margin-bottom: 80px;
+
+        }
+    }
+}
+
+.space {
+    height: 650px;
+}
+
+/*products*/
+.products {
+    @include container();
+    position: absolute;
+    top: 55%;
+    width: 100%;
+    background-color: transparent;
+
+    @include breakpoint(small) {
+        top: 65%;
+    }
+
+    .content {
+        overflow-x: auto;
+        width: 100%;
+        display: flex;
+    }
+
+    .product {
+        // @include container();
+        width: 355px;
+        background-color: white;
+
+        button {
+            border: none;
+            text-align: start;
+            background-color: white;
+            padding-bottom: 0 !important;
+
+            &:hover {
+                color: rgb(64, 64, 202);
+            }
+        }
+    }
+}
+
+/*cards*/
+.cards-pro {
+    padding: 20px;
+    margin: 10px 25px !important;
+    color: white;
+    background-color: rgb(0, 13, 45);
+
+    .card-content {
+        overflow-x: auto;
+        width: 100%;
+        opacity: 1;
+        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        -webkit-transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        -moz-transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        -ms-transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        -o-transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    }
+
+    .card-content.moveright {
+        opacity: 0;
+        transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        -moz-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+        -o-transform: translateX(100%);
+    }
+
+    .card-content.moveleft {
+        opacity: 0;
+        transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+        -moz-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        -o-transform: translateX(-100%);
+    }
+
+
+    .card-pro {
+        max-height: 400px;
+
+        img {
+            padding: 20px;
+            /* shrink product image */
+        }
+
+        overflow-x: auto;
+        font-size: 12px;
+        min-width: 260px;
+        padding: 15px;
+        border-radius: 15px;
+        background-color: white;
+        color: black;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+
+        h6 {
+            color: rgb(133, 31, 31);
+        }
+
+        span {
+            color: white;
+            background-color: rgb(147, 24, 24);
+            border-radius: 5px;
+            padding: 5px;
+            margin-right: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+        }
+
+        .card-pro .card-body {
+            padding: 10px;
+            /* reduce spacing inside */
+        }
+    }
+
+    .prev-btn {
+        @include breakpoint(small) {
+            & {
+                display: none;
+            }
+        }
+
+        background-color: white;
+        height: 130px;
+        width: 60px;
+        border: none;
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+        left: 0px;
+        top: 250px;
+
+        &:hover {
+            background-color: variables.$hover-color;
+        }
+    }
+
+    .next-btn {
+        @include breakpoint(small) {
+            & {
+                display: none;
+            }
+        }
+
+        background-color: white;
+        height: 130px;
+        width: 60px;
+        border: none;
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
+        right: 0px;
+        top: 250px;
+
+        &:hover {
+            background-color: variables.$hover-color;
+        }
+    }
+
+}
+
+/*Start Footer*/
+footer {
+    background-color: variables.$second-color;
+
+    a,
+    h3,
+    select {
+        color: #ccc !important;
+    }
+}
+
+/*End Footer*/
+
+
+
+/*Login Page*/
+.btn {
+    font-size: 20px;
+    font-weight: bold;
+    color: variables.$main-border;
+    background-color: variables.$hover-color;
+
+    &:hover {
+        background-color: variables.$second-color;
+        color: white;
+    }
+}
