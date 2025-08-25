@@ -413,7 +413,8 @@ nav {
     .prev-btn {
         @include breakpoint(small) {
             & {
-                display: none;
+                height: 80px;
+                width: 30px;
             }
         }
 
@@ -434,7 +435,8 @@ nav {
     .next-btn {
         @include breakpoint(small) {
             & {
-                display: none;
+                height: 80px;
+                width: 30px;
             }
         }
 
@@ -479,5 +481,35 @@ footer {
     &:hover {
         background-color: variables.$second-color;
         color: white;
+    }
+}
+
+.moveright {
+    animation: slideRight 1s ease-in-out;
+    -webkit-animation: slideRight 1s ease-in-out;
+}
+
+.moveleft {
+    animation: slideLeft 1s ease-in-out;
+    -webkit-animation: slideLeft 1s ease-in-out;
+}
+
+@keyframes slideRight {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
     }
 }

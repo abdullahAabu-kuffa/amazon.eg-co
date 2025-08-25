@@ -32,16 +32,16 @@ $(document).ready(function () {
                     .removeClass("d-none alert-danger")
                     .addClass("alert alert-danger")
                     .text("Email already exist");
-
             }
             else {
                 users.push(user);
                 localStorage.setItem("users", JSON.stringify(users));
-                localStorage.setItem("currentUser", user.email);
+                localStorage.setItem("currentUser", JSON.stringify(user));
                 $("#loginAlert")
                     .removeClass("d-none alert-success")
                     .addClass("alert alert-success")
                     .text("SignUp successful! Redirecting...");
+
                 setTimeout(() => {
                     window.location.replace("../html/login.html");
                 }, 1000);

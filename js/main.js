@@ -1,20 +1,24 @@
 
 $(document).ready(function () {
-    //replce to login paeg
+
     $('.login').click(function () {
         window.location.href = 'html/login.html';
     })
     let users = JSON.parse(localStorage.getItem("users")) || [];
-    let currentUser = JSON.parse(localStorage.getItem("currentUser"))
-    let user = users.find(user => { user.email == currentUser })
-    if (user == currentUser) {
+    let currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
+    const validUser = users.find(u => u.email === currentUser.email);
+
+    if (validUser) {
         $('.login').text("Profile");
+    }
+    else {
+        $('.login').text('Login');
     }
 })
 
 //fetch products from API
 $(document).ready(function () {
-    let productsPerPage = 4;
+    let productsPerPage = 5;
     let currentPage = 1;
     let products = [];
 
@@ -27,6 +31,8 @@ $(document).ready(function () {
         }
     });
 
+    let startOfPrevBtn;
+    let startOfNextBtn;
     // Show products of current page
     function showProducts() {
         $(".card-content").empty();
@@ -48,13 +54,16 @@ $(document).ready(function () {
                 `);
         });
 
-        $(".prev-btn").prop("disabled", currentPage === 1);
-        $(".next-btn").prop("disabled", currentPage === Math.ceil(products.length / productsPerPage));
+        startOfPrevBtn = 1;
+        startOfNextBtn = Math.ceil(products.length / productsPerPage);
+        $(".prev-btn").prop("disabled", currentPage === startOfPrevBtn);
+        $(".next-btn").prop("disabled", currentPage === startOfNextBtn);
     }
 
     function changePage(newPage, direction) {
         let productsContainer = $(".card-content");
 
+        //add animation 
         productsContainer.addClass(direction === "next" ? "moveright" : "moveleft");
 
         setTimeout(() => {
@@ -65,18 +74,16 @@ $(document).ready(function () {
     }
 
     $(".prev-btn").on("click", function () {
-        if (currentPage > 1) {
+        if (currentPage > startOfPrevBtn) {
             changePage(currentPage - 1, "prev");
         }
     });
 
     $(".next-btn").on("click", function () {
-        if (currentPage < Math.ceil(products.length / productsPerPage)) {
+        if (currentPage < startOfNextBtn) {
             changePage(currentPage + 1, "next");
         }
     });
-
-
 })
 
 

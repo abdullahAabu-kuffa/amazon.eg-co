@@ -354,7 +354,8 @@ nav ul li {
 }
 @media (max-width: 767px) {
   .cards-pro .prev-btn {
-    display: none;
+    height: 80px;
+    width: 30px;
   }
 }
 .cards-pro .prev-btn:hover {
@@ -372,7 +373,8 @@ nav ul li {
 }
 @media (max-width: 767px) {
   .cards-pro .next-btn {
-    display: none;
+    height: 80px;
+    width: 30px;
   }
 }
 .cards-pro .next-btn:hover {
@@ -400,4 +402,31 @@ footer select {
 .btn:hover {
   background-color: rgb(2, 2, 25);
   color: white;
+}
+
+.moveright {
+  animation: slideRight 1s ease-in-out;
+  -webkit-animation: slideRight 1s ease-in-out;
+}
+
+.moveleft {
+  animation: slideLeft 1s ease-in-out;
+  -webkit-animation: slideLeft 1s ease-in-out;
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes slideLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }/*# sourceMappingURL=main.css.map */
